@@ -598,7 +598,12 @@
 
       <!-- PAINEL ADMIN: CLIENTES -->
       <div id="adm-view-clientes" class="hidden space-y-4">
-        <h3 class="text-lg font-extrabold uppercase">Clientes Cadastrados</h3>
+        <div class="flex justify-between items-center">
+          <h3 class="text-lg font-extrabold uppercase">Clientes Cadastrados</h3>
+          <button onclick="openClienteModal()" class="bg-primary-container text-on-primary px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-1 shadow-lg hover:bg-primary">
+            <span class="material-symbols-outlined text-[16px]">add</span> Novo Cliente
+          </button>
+        </div>
         <div class="bg-surface-container-low border border-surface-variant rounded-2xl overflow-x-auto">
           <table class="w-full text-left text-xs">
             <thead class="bg-surface-container-high border-b border-surface-variant uppercase text-on-surface-variant">
@@ -620,6 +625,34 @@
     </section>
 
   </main>
+
+  <!-- MODAL DE AUTENTICAÇÃO DO ADMIN -->
+  <div id="admin-auth-modal" class="hidden fixed inset-0 z-[999] bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-surface-container-low border border-surface-variant rounded-2xl max-w-sm w-full p-6 shadow-2xl space-y-4">
+      <div class="flex justify-between items-center border-b border-surface-variant pb-3">
+        <h3 class="text-lg font-black uppercase text-on-surface flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary-container">lock</span>
+          Acesso Restrito
+        </h3>
+        <button onclick="closeAdminAuthModal()" class="text-on-surface-variant hover:text-on-surface">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+      <form onsubmit="handleAdminAuthSubmit(event)" class="space-y-4 text-xs">
+        <div>
+          <label class="block font-bold mb-1 text-on-surface-variant">Senha do Administrador</label>
+          <input type="password" id="admin-password-input" required placeholder="Digite a senha..." class="w-full bg-background border border-surface-variant rounded-lg p-2.5 text-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-primary-container">
+        </div>
+        <div id="admin-auth-error" class="text-xs font-bold text-error hidden">
+          Senha incorreta. Tente novamente.
+        </div>
+        <div class="flex justify-end gap-2 pt-2 border-t border-surface-variant">
+          <button type="button" onclick="closeAdminAuthModal()" class="px-4 py-2 rounded-lg bg-surface-variant text-on-surface font-bold">Cancelar</button>
+          <button type="submit" class="px-4 py-2 rounded-lg bg-primary-container text-on-primary font-bold">Acessar</button>
+        </div>
+      </form>
+    </div>
+  </div>
 
   <!-- MODAL GENÉRICO DE FORMULÁRIO ADMIN -->
   <div id="admin-modal" class="hidden fixed inset-0 z-[999] bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
