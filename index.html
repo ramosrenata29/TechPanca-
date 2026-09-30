@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TechPança - E-commerce de Hardware & Games</title>
+
+  <!-- Google Fonts & Material Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+
+  <!-- Tailwind CDN com Configuração idêntica ao tema -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "surface-bright": "#f8f9ff",
+            "surface-tint": "#a33e00",
+            "error": "#ba1a1a",
+            "on-background": "#121c2a",
+            "primary-fixed": "#ffdbcd",
+            "surface-container-lowest": "#ffffff",
+            "surface": "#121c2a",
+            "on-secondary": "#ffffff",
+            "tertiary-fixed-dim": "#62df7d",
+            "on-error": "#ffffff",
+            "secondary-fixed-dim": "#a7c8ff",
+            "on-surface": "#ffffff",
+            "surface-container-low": "#1a2638",
+            "on-primary-container": "#ffffff",
+            "on-secondary-fixed": "#001b3c",
+            "surface-dim": "#121c2a",
+            "surface-variant": "#223046",
+            "inverse-surface": "#e6eeff",
+            "outline": "#8e7164",
+            "primary": "#ff6500",
+            "surface-container-high": "#1e2c40",
+            "secondary": "#3a5f94",
+            "tertiary": "#006e2d",
+            "tertiary-fixed": "#7ffc97",
+            "tertiary-container": "#26ac52",
+            "secondary-container": "#21385c",
+            "on-primary": "#ffffff",
+            "surface-container-highest": "#283952",
+            "on-tertiary": "#ffffff",
+            "primary-container": "#ff6500",
+            "secondary-fixed": "#d5e3ff",
+            "surface-container": "#182436",
+            "background": "#0d1522"
+          },
+          borderRadius: {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          fontFamily: {
+            "label-installment": ["Montserrat"],
+            "display-hero": ["Montserrat"],
+            "price-cash-lg": ["Montserrat"],
+            "body-md": ["Montserrat"],
+            "price-cash-md": ["Montserrat"],
+            "body-sm": ["Montserrat"],
+            "headline-sm": ["Montserrat"],
+            "headline-xl": ["Montserrat"],
+            "headline-lg": ["Montserrat"],
+            "label-badge": ["Montserrat"]
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    @layer base {
+      html, body { margin: 0; padding: 0; font-family: 'Montserrat', sans-serif; }
+      body { overscroll-behavior: none; }
+    }
+    .line-clamp-2 {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body class="bg-background font-body-md text-on-surface antialiased flex flex-col min-h-screen">
+
+  <!-- Top Banner -->
+  <div class="bg-primary-container text-on-primary font-headline-sm text-center py-1.5 px-4 tracking-wider flex items-center justify-center gap-2 text-xs md:text-sm font-bold uppercase shadow-md">
+    <span class="material-symbols-outlined text-[18px]">local_fire_department</span>
+    <span>OFERTAS RELÂMPAGO TECHPANÇA - ATÉ 40% OFF NO PIX</span>
+  </div>
+
+  <!-- Main Navigation Header -->
+  <header class="sticky top-0 z-50 bg-surface-container-high/95 backdrop-blur-md border-b border-surface-variant shadow-xl">
+    <div class="max-w-7xl mx-auto px-4 lg:px-8 py-3 flex items-center justify-between gap-4">
+
+      <!-- Logo & Store/Admin Switcher -->
+      <div class="flex items-center gap-4">
+        <a href="#" onclick="showSection('store-home'); return false;" class="flex items-center gap-2 text-decoration-none">
+          <div class="bg-primary-container p-2 rounded-lg text-on-primary font-black text-xl tracking-tighter">
+            TP
+          </div>
+          <div class="flex flex-col leading-none">
+            <span class="font-headline-lg text-xl text-on-surface uppercase tracking-tighter font-extrabold">
+              Tech<span class="text-primary-container">Pança</span>
+            </span>
+            <span class="font-label-badge text-[10px] text-secondary-fixed tracking-widest uppercase font-bold">HARDWARE & GAMES</span>
+          </div>
+        </a>
+
+        <!-- Switcher Loja x Admin -->
+        <div class="hidden sm:flex items-center bg-surface-container-low p-1 rounded-lg border border-surface-variant text-xs">
+          <button id="btn-mode-store" onclick="switchViewMode('store')" class="px-3 py-1.5 rounded-md font-bold transition-colors bg-primary-container text-on-primary">
+            Loja do Cliente
+          </button>
+          <button id="btn-mode-admin" onclick="switchViewMode('admin')" class="px-3 py-1.5 rounded-md font-bold text-on-surface-variant hover:text-on-surface transition-colors flex items-center gap-1">
+            <span class="material-symbols-outlined text-[16px]">admin_panel_settings</span>
+            Painel Admin
+          </button>
+        </div>
+      </div>
+
+      <!-- Barra de Pesquisa (Loja) -->
+      <div class="flex-1 max-w-xl mx-2 hidden md:block">
+        <div class="relative">
+          <input type="text" id="store-search-input" onkeyup="handleSearch(event)" placeholder="Busque por placa de vídeo, processador, periféricos..." class="w-full h-10 pl-4 pr-10 rounded-lg bg-surface-container-low border border-surface-variant text-on-surface text-sm placeholder:text-outline focus:outline-none focus:ring-2 focus:ring-primary-container">
+          <button onclick="applySearch()" class="absolute right-1 top-1 w-8 h-8 bg-primary-container text-on-primary rounded-md flex items-center justify-center hover:bg-primary transition-colors">
+            <span class="material-symbols-outlined text-[18px]">search</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Ações do Cabeçalho (Tema, Carrinho, Clientes, Pedidos) -->
+      <div class="flex items-center gap-3">
+        <!-- Alternar Dark/Light -->
+        <button class="theme-toggle-btn p-2 rounded-lg bg-surface-container-low text-on-surface hover:bg-surface-variant transition-colors flex items-center gap-1 text-xs font-semibold" title="Alternar Tema">
+          <span class="material-symbols-outlined theme-icon text-[20px]">light_mode</span>
+        </button>
+
+        <!-- Meus Pedidos -->
+        <button onclick="showSection('store-orders')" class="hidden sm:flex items-center gap-1 px-3 py-2 rounded-lg bg-surface-container-low hover:bg-surface-variant text-on-surface transition-colors text-xs font-bold">
+          <span class="material-symbols-outlined text-[18px] text-secondary-fixed">inventory_2</span>
+          <span>Pedidos</span>
+        </button>
+
+        <!-- Carrinho -->
+        <button onclick="showSection('store-cart')" class="flex items-center gap-2 bg-primary-container/20 border border-primary-container/40 px-3 py-2 rounded-lg hover:bg-primary-container/30 transition-colors">
+          <div class="relative flex items-center">
+            <span class="material-symbols-outlined text-primary-container text-[24px]">shopping_cart</span>
+            <span class="cart-badge-count absolute -top-2 -right-2 bg-primary-container text-on-primary text-[10px] px-1.5 py-0.2 rounded-full font-black min-w-[16px] text-center">0</span>
+          </div>
+          <div class="hidden xl:flex flex-col leading-tight text-left">
+            <span class="text-[10px] text-secondary-fixed uppercase">Carrinho</span>
+            <span class="cart-label-qty font-bold text-xs">0 ITENS</span>
+          </div>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Navegação Secundária por Departamentos -->
+    <div id="nav-categories-bar" class="bg-surface-container-low border-t border-surface-variant px-4 lg:px-8 py-2 overflow-x-auto whitespace-nowrap">
+      <div class="max-w-7xl mx-auto flex items-center gap-2 text-xs font-bold" id="categories-nav-list">
+        <!-- Renderizado via JS -->
+      </div>
+    </div>
+  </header>
+
+  <!-- Conteúdo Principal Dinâmico -->
+  <main class="flex-1 w-full max-w-7xl mx-auto px-4 lg:px-8 py-6">
+
+    <!-- ========================================== -->
+    <!-- SECÇÃO: VITRINE DA LOJA                    -->
+    <!-- ========================================== -->
+    <section id="sec-store-home" class="space-y-8">
+
+      <!-- Hero Banner -->
+      <div class="relative rounded-2xl bg-gradient-to-r from-surface-container-high to-surface-container-low border border-surface-variant p-6 lg:p-10 overflow-hidden shadow-2xl flex flex-col lg:flex-row items-center justify-between gap-8">
+        <div class="space-y-4 max-w-2xl relative z-10">
+          <div class="inline-flex items-center gap-2 bg-primary-container/20 border border-primary-container/40 text-primary-container px-3 py-1 rounded-full text-xs font-extrabold uppercase">
+            <span class="material-symbols-outlined text-[16px]">bolt</span> OFERTAS RELÂMPAGO TECHPANÇA
+          </div>
+          <h1 class="text-3xl lg:text-5xl font-black uppercase tracking-tight leading-none text-on-surface">
+            ALTA PERFORMANCE <br><span class="text-primary-container">MENOR PREÇO DO BRASIL</span>
+          </h1>
+          <p class="text-on-surface-variant text-sm lg:text-base">
+            Placas de vídeo, processadores e periféricos premium com entrega expressa, garantia nacional e até 15% OFF no PIX!
+          </p>
+          <div class="flex items-center gap-4 pt-2">
+            <button onclick="scrollToProducts()" class="bg-primary-container text-on-primary px-6 py-3 rounded-xl font-black text-sm uppercase shadow-lg hover:bg-primary transition-all flex items-center gap-2">
+              <span class="material-symbols-outlined">shopping_bag</span> Ver Ofertas Ninja
+            </button>
+          </div>
+        </div>
+        <div class="relative z-10 w-full max-w-xs lg:max-w-md">
+          <img src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=800&q=80" alt="Hardware Gamer" class="rounded-2xl shadow-2xl object-cover border-2 border-primary-container/30">
+        </div>
+      </div>
+
+      <!-- Filtros e Título da Vitrine -->
+      <div id="products-section-anchor" class="flex flex-wrap items-center justify-between gap-4 border-b border-surface-variant pb-4">
+        <div>
+          <h2 class="text-2xl font-black uppercase tracking-tight text-on-surface flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary-container">bolt</span>
+            <span id="store-products-title">Lançamentos & Ofertas Ninja</span>
+          </h2>
+          <p class="text-xs text-on-surface-variant" id="store-products-subtitle">Produtos com desconto aplicado em tempo real</p>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <select id="sort-products-select" onchange="renderStoreProducts()" class="bg-surface-container-low border border-surface-variant rounded-lg px-3 py-1.5 text-xs text-on-surface font-bold focus:outline-none">
+            <option value="default">Mais Relevantes</option>
+            <option value="price-asc">Menor Preço</option>
+            <option value="price-desc">Maior Preço</option>
+            <option value="name">Nome (A-Z)</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Grid de Produtos -->
+      <div id="store-products-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <!-- Renderizado Dinamicamente -->
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SECÇÃO: DETALHES DO PRODUTO                -->
+    <!-- ========================================== -->
+    <section id="sec-product-detail" class="hidden space-y-6">
+      <button onclick="showSection('store-home')" class="inline-flex items-center gap-2 text-xs font-bold text-secondary-fixed hover:text-primary-container transition-colors">
+        <span class="material-symbols-outlined text-[18px]">arrow_back</span> Voltar para a loja
+      </button>
+
+      <div id="product-detail-container" class="bg-surface-container-low border border-surface-variant rounded-2xl p-6 lg:p-10 shadow-2xl">
+        <!-- Renderizado dinamicamente -->
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SECÇÃO: CARRINHO DE COMPRAS                -->
+    <!-- ========================================== -->
+    <section id="sec-store-cart" class="hidden space-y-6">
+      <div class="flex items-center justify-between border-b border-surface-variant pb-4">
+        <h2 class="text-2xl font-black uppercase text-on-surface flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary-container">shopping_cart</span>
+          Meu Carrinho de Compras
+        </h2>
+        <button onclick="showSection('store-home')" class="text-xs font-bold text-secondary-fixed hover:underline">
+          Continuar Comprando
+        </button>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <!-- Lista de Itens do Carrinho -->
+        <div class="lg:col-span-8 space-y-4">
+          <div id="cart-items-container" class="space-y-4">
+            <!-- Renderizado dinamicamente -->
+          </div>
+        </div>
+
+        <!-- Resumo do Pedido & Validação de Cupom -->
+        <div class="lg:col-span-4">
+          <div class="bg-surface-container-low border border-surface-variant rounded-2xl p-6 space-y-6 sticky top-28 shadow-xl">
+            <h3 class="text-lg font-extrabold uppercase border-b border-surface-variant pb-3">Resumo do Pedido</h3>
+
+            <!-- Campo de Cupom -->
+            <div class="space-y-2">
+              <label class="text-xs font-bold text-on-surface-variant uppercase">Cupom de Desconto</label>
+              <div class="flex gap-2">
+                <input type="text" id="cart-cupom-input" placeholder="Ex: NINJA10" class="flex-1 bg-background border border-surface-variant rounded-lg px-3 py-2 text-xs uppercase font-bold text-on-surface focus:outline-none focus:ring-1 focus:ring-primary-container">
+                <button onclick="applyCupomCode()" class="bg-surface-variant hover:bg-primary-container text-on-surface hover:text-on-primary px-4 py-2 rounded-lg font-bold text-xs transition-colors">
+                  Aplicar
+                </button>
+              </div>
+              <div id="cupom-feedback-msg" class="text-xs font-bold"></div>
+            </div>
+
+            <!-- Valores -->
+            <div class="space-y-3 text-sm border-t border-surface-variant pt-4">
+              <div class="flex justify-between text-on-surface-variant">
+                <span>Subtotal</span>
+                <span id="cart-subtotal-val" class="font-bold">R$ 0,00</span>
+              </div>
+              <div id="cart-discount-row" class="hidden flex justify-between text-tertiary-container font-bold">
+                <span>Desconto Cupom</span>
+                <span id="cart-discount-val">- R$ 0,00</span>
+              </div>
+              <div class="flex justify-between text-on-surface-variant">
+                <span>Frete Express</span>
+                <span class="text-tertiary font-bold">GRÁTIS</span>
+              </div>
+              <div class="flex justify-between text-lg font-black text-on-surface border-t border-surface-variant pt-3">
+                <span>Total</span>
+                <span id="cart-total-val" class="text-primary-container">R$ 0,00</span>
+              </div>
+            </div>
+
+            <button onclick="goToCheckout()" class="w-full bg-primary-container text-on-primary py-3.5 rounded-xl font-black text-sm uppercase shadow-xl hover:bg-primary transition-all flex items-center justify-center gap-2">
+              <span>Ir para o Checkout</span>
+              <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SECÇÃO: CHECKOUT & CADASTRO DE CLIENTE      -->
+    <!-- ========================================== -->
+    <section id="sec-store-checkout" class="hidden space-y-6">
+      <div class="flex items-center justify-between border-b border-surface-variant pb-4">
+        <h2 class="text-2xl font-black uppercase text-on-surface flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary-container">verified_user</span>
+          Checkout & Finalização de Pedido
+        </h2>
+        <button onclick="showSection('store-cart')" class="text-xs font-bold text-secondary-fixed hover:underline">
+          Voltar ao Carrinho
+        </button>
+      </div>
+
+      <form id="checkout-form" onsubmit="handleCheckoutSubmit(event)" class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <!-- Formulário de Identificação do Cliente -->
+        <div class="lg:col-span-7 bg-surface-container-low border border-surface-variant rounded-2xl p-6 lg:p-8 space-y-6">
+          <h3 class="text-lg font-black uppercase text-on-surface flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary-container">person</span>
+            Dados do Cliente (Cadastro / Identificação)
+          </h3>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="sm:col-span-2 space-y-1">
+              <label class="text-xs font-bold text-on-surface-variant">Nome Completo *</label>
+              <input type="text" id="chk-nome" required placeholder="Ex: João da Silva" class="w-full bg-background border border-surface-variant rounded-lg px-3 py-2 text-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-primary-container">
+            </div>
+
+            <div class="space-y-1">
+              <label class="text-xs font-bold text-on-surface-variant">E-mail *</label>
+              <input type="email" id="chk-email" required placeholder="seu@email.com" class="w-full bg-background border border-surface-variant rounded-lg px-3 py-2 text-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-primary-container">
+            </div>
+
+            <div class="space-y-1">
+              <label class="text-xs font-bold text-on-surface-variant">CPF *</label>
+              <input type="text" id="chk-cpf" required placeholder="000.000.000-00" class="w-full bg-background border border-surface-variant rounded-lg px-3 py-2 text-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-primary-container">
+            </div>
+
+            <div class="sm:col-span-2 space-y-1">
+              <label class="text-xs font-bold text-on-surface-variant">Telefone / WhatsApp</label>
+              <input type="tel" id="chk-telefone" placeholder="(11) 99999-9999" class="w-full bg-background border border-surface-variant rounded-lg px-3 py-2 text-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-primary-container">
+            </div>
+          </div>
+
+          <!-- Forma de Pagamento Simulado -->
+          <div class="space-y-3 pt-4 border-t border-surface-variant">
+            <h4 class="text-sm font-black uppercase text-on-surface">Forma de Pagamento</h4>
+            <div class="grid grid-cols-2 gap-3">
+              <label class="flex items-center gap-3 p-3 rounded-xl border border-primary-container/50 bg-primary-container/10 cursor-pointer">
+                <input type="radio" name="payment_method" value="PIX" checked class="accent-primary-container">
+                <div>
+                  <span class="block font-bold text-xs uppercase text-on-surface">PIX (Aprovação Instantânea)</span>
+                  <span class="text-[10px] text-tertiary font-bold">Ganhe Desconto Adicional</span>
+                </div>
+              </label>
+              <label class="flex items-center gap-3 p-3 rounded-xl border border-surface-variant bg-background cursor-pointer">
+                <input type="radio" name="payment_method" value="Cartao" class="accent-primary-container">
+                <div>
+                  <span class="block font-bold text-xs uppercase text-on-surface">Cartão de Crédito</span>
+                  <span class="text-[10px] text-on-surface-variant">Em até 12x sem juros</span>
+                </div>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Confirmador de Valores e Finalizar -->
+        <div class="lg:col-span-5 bg-surface-container-low border border-surface-variant rounded-2xl p-6 lg:p-8 space-y-6 h-fit sticky top-28 shadow-xl">
+          <h3 class="text-lg font-black uppercase text-on-surface border-b border-surface-variant pb-3">
+            Resumo do Pedido
+          </h3>
+
+          <div id="checkout-items-mini" class="space-y-3 max-h-60 overflow-y-auto pr-1">
+            <!-- Renderizado dinamicamente -->
+          </div>
+
+          <div class="space-y-2 border-t border-surface-variant pt-4 text-sm">
+            <div class="flex justify-between text-on-surface-variant">
+              <span>Subtotal</span>
+              <span id="chk-subtotal-val" class="font-bold">R$ 0,00</span>
+            </div>
+            <div id="chk-discount-row" class="hidden flex justify-between text-tertiary-container font-bold">
+              <span>Desconto</span>
+              <span id="chk-discount-val">- R$ 0,00</span>
+            </div>
+            <div class="flex justify-between text-lg font-black text-on-surface border-t border-surface-variant pt-3">
+              <span>Valor Final</span>
+              <span id="chk-total-val" class="text-primary-container">R$ 0,00</span>
+            </div>
+          </div>
+
+          <button type="submit" id="btn-finish-order" class="w-full bg-primary-container text-on-primary py-4 rounded-xl font-black text-base uppercase shadow-2xl hover:bg-primary transition-all flex items-center justify-center gap-2">
+            <span class="material-symbols-outlined">check_circle</span>
+            <span>Finalizar Compra Agora</span>
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SECÇÃO: MEUS PEDIDOS                       -->
+    <!-- ========================================== -->
+    <section id="sec-store-orders" class="hidden space-y-6">
+      <div class="flex items-center justify-between border-b border-surface-variant pb-4">
+        <h2 class="text-2xl font-black uppercase text-on-surface flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary-container">inventory_2</span>
+          Histórico de Pedidos
+        </h2>
+        <button onclick="showSection('store-home')" class="text-xs font-bold text-secondary-fixed hover:underline">
+          Voltar para a Loja
+        </button>
+      </div>
+
+      <div id="client-orders-container" class="space-y-4">
+        <!-- Renderizado dinamicamente -->
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SECÇÃO: PAINEL ADMINISTRATIVO              -->
+    <!-- ========================================== -->
+    <section id="sec-admin-dashboard" class="hidden space-y-6">
+
+      <!-- Cabeçalho do Admin -->
+      <div class="bg-surface-container-low border border-surface-variant rounded-2xl p-6 flex flex-wrap items-center justify-between gap-4 shadow-xl">
+        <div>
+          <h2 class="text-2xl font-black uppercase tracking-tight text-on-surface flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary-container">admin_panel_settings</span>
+            Painel da Loja (Administração)
+          </h2>
+          <p class="text-xs text-on-surface-variant">Gestão completa de catálogo, promoções, cupons, clientes e vendas</p>
+        </div>
+
+        <!-- Abas Administrativas -->
+        <div class="flex items-center gap-2 bg-background p-1.5 rounded-xl border border-surface-variant overflow-x-auto">
+          <button onclick="switchAdminTab('produtos')" id="tab-adm-produtos" class="px-4 py-2 rounded-lg font-bold text-xs transition-colors bg-primary-container text-on-primary">
+            Produtos
+          </button>
+          <button onclick="switchAdminTab('categorias')" id="tab-adm-categorias" class="px-4 py-2 rounded-lg font-bold text-xs text-on-surface-variant hover:text-on-surface transition-colors">
+            Categorias
+          </button>
+          <button onclick="switchAdminTab('promocoes')" id="tab-adm-promocoes" class="px-4 py-2 rounded-lg font-bold text-xs text-on-surface-variant hover:text-on-surface transition-colors">
+            Promoções
+          </button>
+          <button onclick="switchAdminTab('cupons')" id="tab-adm-cupons" class="px-4 py-2 rounded-lg font-bold text-xs text-on-surface-variant hover:text-on-surface transition-colors">
+            Cupons
+          </button>
+          <button onclick="switchAdminTab('vendas')" id="tab-adm-vendas" class="px-4 py-2 rounded-lg font-bold text-xs text-on-surface-variant hover:text-on-surface transition-colors">
+            Vendas
+          </button>
+          <button onclick="switchAdminTab('clientes')" id="tab-adm-clientes" class="px-4 py-2 rounded-lg font-bold text-xs text-on-surface-variant hover:text-on-surface transition-colors">
+            Clientes
+          </button>
+        </div>
+      </div>
+
+      <!-- PAINEL ADMIN: PRODUOS -->
+      <div id="adm-view-produtos" class="space-y-4">
+        <div class="flex justify-between items-center">
+          <h3 class="text-lg font-extrabold uppercase">Gestão de Produtos</h3>
+          <button onclick="openProdutoModal()" class="bg-primary-container text-on-primary px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-1 shadow-lg hover:bg-primary">
+            <span class="material-symbols-outlined text-[16px]">add</span> Novo Produto
+          </button>
+        </div>
+        <div class="bg-surface-container-low border border-surface-variant rounded-2xl overflow-x-auto">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-surface-container-high border-b border-surface-variant uppercase text-on-surface-variant">
+              <tr>
+                <th class="p-3">Foto</th>
+                <th class="p-3">Nome</th>
+                <th class="p-3">Categoria</th>
+                <th class="p-3">Preço</th>
+                <th class="p-3">Estoque</th>
+                <th class="p-3">Status</th>
+                <th class="p-3 text-right">Ações</th>
+              </tr>
+            </thead>
+            <tbody id="adm-table-produtos" class="divide-y divide-surface-variant">
+              <!-- Renderizado via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- PAINEL ADMIN: CATEGORIAS -->
+      <div id="adm-view-categorias" class="hidden space-y-4">
+        <div class="flex justify-between items-center">
+          <h3 class="text-lg font-extrabold uppercase">Gestão de Categorias</h3>
+          <button onclick="openCategoriaModal()" class="bg-primary-container text-on-primary px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-1 shadow-lg hover:bg-primary">
+            <span class="material-symbols-outlined text-[16px]">add</span> Nova Categoria
+          </button>
+        </div>
+        <div class="bg-surface-container-low border border-surface-variant rounded-2xl overflow-x-auto">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-surface-container-high border-b border-surface-variant uppercase text-on-surface-variant">
+              <tr>
+                <th class="p-3">Nome</th>
+                <th class="p-3">Slug</th>
+                <th class="p-3">Descrição</th>
+                <th class="p-3 text-right">Ações</th>
+              </tr>
+            </thead>
+            <tbody id="adm-table-categorias" class="divide-y divide-surface-variant">
+              <!-- Renderizado via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- PAINEL ADMIN: PROMOÇÕES -->
+      <div id="adm-view-promocoes" class="hidden space-y-4">
+        <div class="flex justify-between items-center">
+          <h3 class="text-lg font-extrabold uppercase">Gestão de Promoções com Validade</h3>
+          <button onclick="openPromocaoModal()" class="bg-primary-container text-on-primary px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-1 shadow-lg hover:bg-primary">
+            <span class="material-symbols-outlined text-[16px]">add</span> Nova Promoção
+          </button>
+        </div>
+        <div class="bg-surface-container-low border border-surface-variant rounded-2xl overflow-x-auto">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-surface-container-high border-b border-surface-variant uppercase text-on-surface-variant">
+              <tr>
+                <th class="p-3">Nome</th>
+                <th class="p-3">Desconto (%)</th>
+                <th class="p-3">Alvo (Prod/Cat)</th>
+                <th class="p-3">Data Expiração</th>
+                <th class="p-3">Status</th>
+                <th class="p-3 text-right">Ações</th>
+              </tr>
+            </thead>
+            <tbody id="adm-table-promocoes" class="divide-y divide-surface-variant">
+              <!-- Renderizado via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- PAINEL ADMIN: CUPONS -->
+      <div id="adm-view-cupons" class="hidden space-y-4">
+        <div class="flex justify-between items-center">
+          <h3 class="text-lg font-extrabold uppercase">Gestão de Cupons de Desconto</h3>
+          <button onclick="openCupomModal()" class="bg-primary-container text-on-primary px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-1 shadow-lg hover:bg-primary">
+            <span class="material-symbols-outlined text-[16px]">add</span> Novo Cupom
+          </button>
+        </div>
+        <div class="bg-surface-container-low border border-surface-variant rounded-2xl overflow-x-auto">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-surface-container-high border-b border-surface-variant uppercase text-on-surface-variant">
+              <tr>
+                <th class="p-3">Código</th>
+                <th class="p-3">Desconto</th>
+                <th class="p-3">Usos / Limite</th>
+                <th class="p-3">Validade</th>
+                <th class="p-3">Status</th>
+                <th class="p-3 text-right">Ações</th>
+              </tr>
+            </thead>
+            <tbody id="adm-table-cupons" class="divide-y divide-surface-variant">
+              <!-- Renderizado via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- PAINEL ADMIN: VENDAS -->
+      <div id="adm-view-vendas" class="hidden space-y-4">
+        <h3 class="text-lg font-extrabold uppercase">Gestão de Vendas Realizadas</h3>
+        <div class="bg-surface-container-low border border-surface-variant rounded-2xl overflow-x-auto">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-surface-container-high border-b border-surface-variant uppercase text-on-surface-variant">
+              <tr>
+                <th class="p-3">ID / Data</th>
+                <th class="p-3">Cliente</th>
+                <th class="p-3">Subtotal</th>
+                <th class="p-3">Desconto</th>
+                <th class="p-3">Total</th>
+                <th class="p-3">Status</th>
+                <th class="p-3 text-right">Detalhes</th>
+              </tr>
+            </thead>
+            <tbody id="adm-table-vendas" class="divide-y divide-surface-variant">
+              <!-- Renderizado via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- PAINEL ADMIN: CLIENTES -->
+      <div id="adm-view-clientes" class="hidden space-y-4">
+        <h3 class="text-lg font-extrabold uppercase">Clientes Cadastrados</h3>
+        <div class="bg-surface-container-low border border-surface-variant rounded-2xl overflow-x-auto">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-surface-container-high border-b border-surface-variant uppercase text-on-surface-variant">
+              <tr>
+                <th class="p-3">Nome</th>
+                <th class="p-3">E-mail</th>
+                <th class="p-3">CPF</th>
+                <th class="p-3">Telefone</th>
+                <th class="p-3">Data Cadastro</th>
+              </tr>
+            </thead>
+            <tbody id="adm-table-clientes" class="divide-y divide-surface-variant">
+              <!-- Renderizado via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- MODAL GENÉRICO DE FORMULÁRIO ADMIN -->
+  <div id="admin-modal" class="hidden fixed inset-0 z-[999] bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-surface-container-low border border-surface-variant rounded-2xl max-w-lg w-full p-6 shadow-2xl relative space-y-4 max-h-[90vh] overflow-y-auto">
+      <div class="flex justify-between items-center border-b border-surface-variant pb-3">
+        <h3 id="modal-title" class="text-lg font-black uppercase text-on-surface">Modal</h3>
+        <button onclick="closeAdminModal()" class="text-on-surface-variant hover:text-on-surface">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+      <div id="modal-body">
+        <!-- Renderizado via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL DE ITENS DA VENDA -->
+  <div id="venda-details-modal" class="hidden fixed inset-0 z-[999] bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-surface-container-low border border-surface-variant rounded-2xl max-w-lg w-full p-6 shadow-2xl space-y-4">
+      <div class="flex justify-between items-center border-b border-surface-variant pb-3">
+        <h3 class="text-lg font-black uppercase text-on-surface">Itens da Venda</h3>
+        <button onclick="document.getElementById('venda-details-modal').classList.add('hidden')" class="text-on-surface-variant hover:text-on-surface">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+      <div id="venda-details-body" class="space-y-3 text-xs">
+        <!-- Renderizado via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer Rodapé -->
+  <footer class="bg-surface-container-high border-t border-surface-variant text-on-surface-variant text-xs py-8 mt-12">
+    <div class="max-w-7xl mx-auto px-4 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div>
+        <h4 class="font-extrabold uppercase text-on-surface mb-2">TechPança E-Commerce</h4>
+        <p>A melhor e mais rápida loja de hardware, periféricos e componentes de computador do Brasil.</p>
+      </div>
+      <div>
+        <h4 class="font-extrabold uppercase text-on-surface mb-2">Departamentos</h4>
+        <p>Hardware, Placas de Vídeo, Processadores, Monitores, Periféricos Gamer.</p>
+      </div>
+      <div>
+        <h4 class="font-extrabold uppercase text-on-surface mb-2">Atendimento</h4>
+        <p>Segunda a Sexta: 08h às 20h<br>Sábado: 09h às 15h</p>
+      </div>
+      <div>
+        <h4 class="font-extrabold uppercase text-on-surface mb-2">Pagamento Seguro</h4>
+        <p>PIX instantâneo, Cartão de Crédito e Boleto com Criptografia de Ponta a Ponta.</p>
+      </div>
+    </div>
+    <div class="max-w-7xl mx-auto px-4 lg:px-8 pt-6 mt-6 border-t border-surface-variant text-center font-bold">
+      © 2025 TechPança. Todos os direitos reservados.
+    </div>
+  </footer>
+
+  <!-- Scripts JavaScript da Aplicação -->
+  <script src="js/supabase.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/app.js"></script>
+
+</body>
+</html>
