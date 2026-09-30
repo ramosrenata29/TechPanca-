@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "inverse-primary": "#bec6e0", "error": "#ba1a1a", "on-tertiary-fixed-variant": "#005320", "surface": "#f8f9ff", "secondary": "#9d4300", "on-secondary-fixed": "#341100", "on-primary-fixed": "#131b2e", "on-primary-fixed-variant": "#3f465c", "inverse-on-surface": "#eaf1ff", "on-secondary-container": "#5c2400", "on-secondary-fixed-variant": "#783200", "on-primary-container": "#7c839b", "tertiary-fixed": "#7ffc97", "primary-container": "#131b2e", "primary-fixed-dim": "#bec6e0", "secondary-fixed-dim": "#ffb690", "on-primary": "#ffffff", "primary": "#000000", "on-tertiary-container": "#009842", "background": "#f8f9ff", "surface-container-low": "#eff4ff", "surface-tint": "#565e74", "surface-container-lowest": "#ffffff", "tertiary": "#000000", "on-tertiary-fixed": "#002109", "surface-bright": "#f8f9ff", "on-secondary": "#ffffff", "on-error": "#ffffff", "surface-container-highest": "#d3e4fe", "surface-container": "#e5eeff", "on-error-container": "#93000a", "outline": "#76777d", "on-surface-variant": "#45464d", "error-container": "#ffdad6", "surface-variant": "#d3e4fe", "tertiary-container": "#002109", "on-tertiary": "#ffffff", "primary-fixed": "#dae2fd", "secondary-fixed": "#ffdbca", "secondary-container": "#fd761a", "surface-dim": "#cbdbf5", "outline-variant": "#c6c6cd", "inverse-surface": "#213145", "tertiary-fixed-dim": "#62df7d", "on-surface": "#0b1c30", "surface-container-high": "#dce9ff", "on-background": "#0b1c30" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-xs": "0.25rem", "space-md": "1rem", "space-sm": "0.5rem", "gutter-mobile": "1rem", "space-lg": "1.5rem", "margin": "2rem", "gutter": "1.5rem", "space-xl": "2.5rem", "margin-mobile": "1rem" }, "fontFamily": { "label-lg": [ "Plus Jakarta Sans" ], "price-card": [ "Plus Jakarta Sans" ], "body-lg": [ "Plus Jakarta Sans" ], "body-md": [ "Plus Jakarta Sans" ], "headline-xl": [ "Plus Jakarta Sans" ], "label-md": [ "Plus Jakarta Sans" ], "display-lg": [ "Plus Jakarta Sans" ], "label-sm": [ "Plus Jakarta Sans" ], "headline-xl-mobile": [ "Plus Jakarta Sans" ], "display-lg-mobile": [ "Plus Jakarta Sans" ], "body-sm": [ "Plus Jakarta Sans" ], "headline-md": [ "Plus Jakarta Sans" ], "price-hero": [ "Plus Jakarta Sans" ], "headline-sm": [ "Plus Jakarta Sans" ] }, "fontSize": { "label-lg": [ "16px", { "lineHeight": "22px", "fontWeight": "600" } ], "price-card": [ "24px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "700" } ], "body-lg": [ "18px", { "lineHeight": "28px", "fontWeight": "400" } ], "body-md": [ "16px", { "lineHeight": "24px", "fontWeight": "400" } ], "headline-xl": [ "32px", { "lineHeight": "40px", "letterSpacing": "-0.015em", "fontWeight": "700" } ], "label-md": [ "14px", { "lineHeight": "18px", "fontWeight": "600" } ], "display-lg": [ "40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" } ], "label-sm": [ "12px", { "lineHeight": "16px", "fontWeight": "600" } ], "headline-xl-mobile": [ "24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700" } ], "display-lg-mobile": [ "30px", { "lineHeight": "38px", "letterSpacing": "-0.015em", "fontWeight": "700" } ], "body-sm": [ "14px", { "lineHeight": "20px", "fontWeight": "400" } ], "headline-md": [ "22px", { "lineHeight": "30px", "letterSpacing": "-0.01em", "fontWeight": "600" } ], "price-hero": [ "36px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "800" } ], "headline-sm": [ "18px", { "lineHeight": "26px", "fontWeight": "600" } ] } } } };</script></head><body class="bg-surface font-body-md text-on-surface antialiased"><header class="fixed top-0 left-0 right-0 z-50 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-28 max-w-[1240px] mx-auto px-margin flex flex-col justify-between py-space-sm"><div class="flex items-center justify-between gap-gutter"><div class="flex items-center gap-space-md shrink-0"><img alt="Brand logo. - Primary color: #ff6500
+- Font: montserrat
+- Mode: light
+- Roundness: rounded-sm
+" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1Uy7ac5dgYkti990Fjsnj9s2qdtinrYKqgnbOaSHyQjrWz4X2Bw0gtN4BTVnrgN_CwupfLGLYJ1iURFpTj9O9rt8WEHigXvCv0yeoyo0TwYpeQa2CXIcGhN1SUCWa8mtHrcziRFf3fFLp-iJMmBSwI-dcP5RihciX87TYMVLGA5rwKlinrcCUYgprpkZ8B0AXW_9OQwz4O-rgSRQ4WRChOzWcLk3sW-ntGz0-60ULca_nj3L9UteVrODKM"/><a class="flex flex-col" data-path="loja-principal" href="#"><span class="font-headline-md text-headline-md text-on-surface tracking-tight">TechPança</span><span class="font-label-sm text-label-sm text-on-surface-variant -mt-1">Tecnologia descomplicada para você</span></a></div><div class="flex-1 max-w-xl mx-space-md"><div class="relative flex items-center"><span class="material-symbols-outlined absolute left-space-md text-outline pointer-events-none text-[20px]">search</span><input class="w-full h-11 pl-11 pr-space-md bg-surface-container-low text-on-surface placeholder:text-on-surface-variant font-body-sm text-body-sm rounded-lg focus:outline-none focus:bg-surface-container-lowest transition-colors" placeholder="O que você procura hoje? Ex: mouse, teclado, computador..." type="text"/></div></div><div class="flex items-center gap-space-lg shrink-0"><a class="hidden xl:flex items-center gap-space-xs text-on-surface-variant hover:text-on-surface transition-colors py-space-xs" data-path="ajuda-e-suporte" href="#"><div class="w-7 h-7 rounded-full bg-surface-container flex items-center justify-center"><span class="material-symbols-outlined text-[16px] text-on-surface">support_agent</span></div><div class="text-left"><span class="block font-label-sm text-label-sm text-on-surface-variant">Dúvidas na escolha?</span><span class="block font-label-md text-label-md text-on-surface font-semibold">WhatsApp de Suporte</span></div></a><a class="flex items-center gap-space-sm text-on-surface-variant hover:text-on-surface transition-colors py-space-xs" data-path="minha-conta" href="#"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div><div class="hidden md:flex flex-col text-left"><span class="font-label-sm text-label-sm text-on-surface-variant">Olá, visitante</span><span class="font-label-md text-label-md text-on-surface font-semibold">Minha Conta</span></div></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg bg-surface-container-high hover:bg-surface-container hover:text-on-surface text-on-surface transition-colors" data-path="carrinho-de-compras" href="#"><div class="relative flex items-center justify-center"><span class="material-symbols-outlined text-[22px] text-on-surface">shopping_bag</span><span class="absolute -top-1.5 -right-2 bg-secondary-container text-on-primary font-label-sm text-[11px] leading-tight px-1.5 py-0.5 rounded-full font-bold">2</span></div><span class="hidden sm:inline font-label-md text-label-md font-semibold text-on-surface">Meu Carrinho</span></a></div></div><div class="flex items-center justify-between pt-space-xs"><nav class="flex items-center gap-space-md" data-active-classes="bg-surface-container text-on-surface font-bold rounded-lg"><a aria-current="page" class="px-space-md py-space-xs transition-colors bg-surface-container text-on-surface font-bold rounded-lg" data-path="loja-principal" href="#">Início</a><a class="px-space-md py-space-xs font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors rounded-lg" data-path="computadores-e-pecas" href="#">Computadores &amp; Peças</a><a class="px-space-md py-space-xs font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors rounded-lg" data-path="acessorios-e-mouses" href="#">Acessórios &amp; Mouses</a><a class="px-space-md py-space-xs font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors rounded-lg" data-path="telas-e-monitores" href="#">Telas &amp; Monitores</a><a class="px-space-md py-space-xs font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors rounded-lg" data-path="ofertas-da-semana" href="#">Ofertas da Semana</a></nav><div class="hidden lg:flex items-center gap-space-xs font-label-sm text-label-sm text-on-surface-variant"><span class="material-symbols-outlined text-[16px] text-on-tertiary-container">verified</span><span>Compra 100% segura e garantida</span></div></div></div></header><main class="w-full pt-28 bg-surface"><div class="flex flex-col w-full">
+<!-- Top Reassurance Banner -->
+<section class="w-full bg-surface-container-high py-space-sm px-margin">
+<div class="max-w-[1240px] mx-auto flex flex-wrap items-center justify-between gap-space-md text-on-surface">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-secondary-container text-[20px]" style="font-variation-settings: 'FILL' 1;">recommend</span>
+<span class="font-label-md text-label-md">Loja oficial TechPança: Tecnologia sem complicação, pronta para o seu dia.</span>
+</div>
+<div class="flex items-center gap-space-lg">
+<div class="flex items-center gap-space-xs font-label-sm text-label-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-on-tertiary-container">verified</span>
+<span>Nota Fiscal &amp; Garantia de 1 Ano</span>
+</div>
+<div class="flex items-center gap-space-xs font-label-sm text-label-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-secondary-container">local_shipping</span>
+<span>Entrega Segura em Todo o Brasil</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Hero Section (Calm, Warm & Educational) -->
+<section class="max-w-[1240px] mx-auto px-margin pt-space-xl pb-space-lg w-full">
+<div class="bg-surface-container-lowest rounded-xl p-space-xl shadow-sm relative overflow-hidden">
+<!-- Decorative warm ambient gradient backings -->
+<div class="absolute -top-24 -right-24 w-96 h-96 bg-secondary-fixed/30 rounded-full blur-3xl pointer-events-none"></div>
+<div class="absolute -bottom-24 -left-24 w-80 h-80 bg-surface-container-highest/60 rounded-full blur-3xl pointer-events-none"></div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center relative z-10">
+<!-- Content -->
+<div class="lg:col-span-7 space-y-space-md">
+<div class="inline-flex items-center gap-space-xs bg-surface-container-high px-space-md py-1.5 rounded-full">
+<span class="w-2 h-2 rounded-full bg-secondary-container"></span>
+<span class="font-label-sm text-label-sm text-on-surface uppercase tracking-wider">Feito para todo mundo</span>
+</div>
+<h1 class="font-display-lg text-display-lg text-on-surface tracking-tight">
+            Tecnologia fácil e garantida para sua casa ou trabalho.
+          </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
+            Computadores e acessórios prontos para trabalhar, jogar e estudar sem dor de cabeça. Traduzimos termos complicados em escolhas práticas e seguras para você.
+          </p>
+<div class="flex flex-wrap items-center gap-space-md pt-space-sm">
+<a class="bg-secondary-container hover:opacity-90 text-on-primary px-space-xl py-3.5 rounded-lg font-label-lg text-label-lg transition-all shadow-sm flex items-center gap-space-xs" href="#produtos-recomendados">
+<span>Explorar Produtos Fáceis</span>
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</a>
+<a class="bg-surface-container hover:bg-surface-container-high text-on-surface px-space-lg py-3.5 rounded-lg font-label-lg text-label-lg transition-colors flex items-center gap-space-xs" href="#guia-escolha">
+<span class="material-symbols-outlined text-[20px]">help_outline</span>
+<span>Como escolher o ideal?</span>
+</a>
+</div>
+<!-- 3 Plain Language Hero Badges -->
+<div class="pt-space-lg grid grid-cols-1 sm:grid-cols-3 gap-space-md">
+<div class="bg-surface-container-low rounded-lg p-space-md flex items-center gap-space-sm">
+<div class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-secondary-container text-[20px]">local_shipping</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface">Entrega rápida e rastreada</span>
+</div>
+<div class="bg-surface-container-low rounded-lg p-space-md flex items-center gap-space-sm">
+<div class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-tertiary-container text-[20px]">verified</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface">1 ano de garantia total</span>
+</div>
+<div class="bg-surface-container-low rounded-lg p-space-md flex items-center gap-space-sm">
+<div class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-surface text-[20px]">support_agent</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface">Suporte humano pelo WhatsApp</span>
+</div>
+</div>
+</div>
+<!-- Hero Visual Showcase -->
+<div class="lg:col-span-5 relative">
+<div class="relative rounded-xl overflow-hidden bg-surface-container p-space-md shadow-sm">
+<img class="w-full h-80 object-cover rounded-lg" data-alt="Warm and clean home office desk setup with an ultra-thin LG monitor displaying crisp charts, a minimalist mechanical keyboard with warm lighting, and a gentle potted succulent in soft daylight with deep slate and orange accents" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCE5DOpHRAWp00IbwD4yB59wsdIQvRcQ-2kN_opEcoy-qnmx3yNnrkSvVquhLKt6GMgnmB1ln0jKbtNyYVzu4PXMB_LFZS8ZNBSDsVKv9os4iZ2PtPOWiCXpVXFcUwj8drcowS-9JFA3ALTnkne76zMnMQ5Lmvpdg_YO6Fg8slFfJjSa-sc4Y5gwee4fh6LdQPI5cegsrmcyowOi91fPYPu_ArCXmPuo6C9I88Ur1rjT2-nstv_5jb4Ag"/>
+<div class="absolute bottom-6 left-6 right-6 bg-surface-container-lowest/95 backdrop-blur p-space-md rounded-lg shadow-md flex items-center justify-between">
+<div>
+<span class="font-label-sm text-label-sm text-on-tertiary-container block">100% Configurado</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold">Tire da caixa e use na hora</span>
+</div>
+<span class="material-symbols-outlined text-on-tertiary-container text-[26px]">task_alt</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Interactive Guide: "Como Escolher Seu Produto?" -->
+<section class="max-w-[1240px] mx-auto px-margin py-space-xl w-full" id="guia-escolha">
+<div class="text-center max-w-2xl mx-auto mb-space-xl">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary-container">Sem complicação</span>
+<h2 class="font-headline-xl text-headline-xl text-on-surface mt-1">Como escolher seu produto?</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">
+        Não precisa saber nomes difíceis ou códigos de informática. Escolha pelo que você quer fazer:
+      </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Card 1: Trabalho e Estudo -->
+<div class="bg-surface-container-lowest rounded-xl p-space-xl shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between group">
+<div>
+<div class="w-14 h-14 rounded-xl bg-surface-container-high flex items-center justify-center text-on-surface mb-space-lg group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[32px]">school</span>
+</div>
+<div class="inline-block px-space-sm py-1 rounded-full bg-surface-container text-on-surface font-label-sm text-label-sm mb-space-sm">
+            Rotina Diária
+          </div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-space-sm">Para Estudos e Escritório</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-space-lg">
+            Computadores velozes para abrir documentos, participar de videochamadas e telas confortáveis que não cansam a vista após muitas horas.
+          </p>
+<ul class="space-y-space-xs font-body-sm text-body-sm text-on-surface-variant mb-space-lg">
+<li class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-on-tertiary-container text-[18px]">check</span>
+              Iniciação ultrarrápida em segundos
+            </li>
+<li class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-on-tertiary-container text-[18px]">check</span>
+              Imagens sem reflexos incômodos
+            </li>
+<li class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-on-tertiary-container text-[18px]">check</span>
+              Programas de texto e internet sem travar
+            </li>
+</ul>
+</div>
+<button class="w-full py-3 bg-surface-container-low hover:bg-surface-container text-on-surface font-label-md text-label-md rounded-lg transition-colors flex items-center justify-center gap-space-xs" onclick="filterCategory('estudos')">
+<span>Ver opções de estudo</span>
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+<!-- Card 2: Jogos e Criação -->
+<div class="bg-surface-container-lowest rounded-xl p-space-xl shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between group">
+<div>
+<div class="w-14 h-14 rounded-xl bg-secondary-fixed flex items-center justify-center text-secondary-container mb-space-lg group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[32px]">sports_esports</span>
+</div>
+<div class="inline-block px-space-sm py-1 rounded-full bg-secondary-fixed/50 text-secondary-container font-label-sm text-label-sm mb-space-sm">
+            Alto Rendimento
+          </div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-space-sm">Para Jogos e Criação</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-space-lg">
+            Peças modernas para quem quer rodar jogos atuais com gráficos realistas, editar vídeos de família ou renderizar fotos com fluidez total.
+          </p>
+<ul class="space-y-space-xs font-body-sm text-body-sm text-on-surface-variant mb-space-lg">
+<li class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-on-tertiary-container text-[18px]">check</span>
+              Gráficos em alta definição
+            </li>
+<li class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-on-tertiary-container text-[18px]">check</span>
+              Sem quedas de quadros ou lentidão
+            </li>
+<li class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-on-tertiary-container text-[18px]">check</span>
+              Excelente ventilação silenciosa
+            </li>
+</ul>
+</div>
+<button class="w-full py-3 bg-secondary-container hover:opacity-95 text-on-primary font-label-md text-label-md rounded-lg transition-opacity flex items-center justify-center gap-space-xs" onclick="filterCategory('jogos')">
+<span>Ver opções para jogos</span>
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+<!-- Card 3: Acessórios Confortáveis -->
+<div class="bg-surface-container-lowest rounded-xl p-space-xl shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between group">
+<div>
+<div class="w-14 h-14 rounded-xl bg-surface-container-high flex items-center justify-center text-on-surface mb-space-lg group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[32px]">mouse</span>
+</div>
+<div class="inline-block px-space-sm py-1 rounded-full bg-surface-container text-on-surface font-label-sm text-label-sm mb-space-sm">
+            Ergonomia e Bem-estar
+          </div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-space-sm">Acessórios Confortáveis</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-space-lg">
+            Teclados com toque macio e silencioso, mouses desenhados para proteger o pulso e fones que isolam ruídos para maior foco.
+          </p>
+<ul class="space-y-space-xs font-body-sm text-body-sm text-on-surface-variant mb-space-lg">
+<li class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-on-tertiary-container text-[18px]">check</span>
+              Alívio de tensão nos dedos e punhos
+            </li>
+<li class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-on-tertiary-container text-[18px]">check</span>
+              Conexão imediata Plug &amp; Play
+            </li>
+<li class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-on-tertiary-container text-[18px]">check</span>
+              Construção resistente para anos de uso
+            </li>
+</ul>
+</div>
+<button class="w-full py-3 bg-surface-container-low hover:bg-surface-container text-on-surface font-label-md text-label-md rounded-lg transition-colors flex items-center justify-center gap-space-xs" onclick="filterCategory('acessorios')">
+<span>Ver mouses &amp; teclados</span>
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Reassurance Flow Strip -->
+<section class="max-w-[1240px] mx-auto px-margin py-space-md w-full">
+<div class="bg-surface-container-low rounded-xl p-space-lg flex flex-col md:flex-row items-center justify-around gap-space-lg">
+<div class="flex items-center gap-space-md">
+<span class="material-symbols-outlined text-[28px] text-secondary-container">sentiment_very_satisfied</span>
+<div>
+<span class="font-label-lg text-label-lg text-on-surface block">Linguagem Simples</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Explicamos tudo sem complicação</span>
+</div>
+</div>
+<div class="hidden md:block w-px h-10 bg-outline-variant/40"></div>
+<div class="flex items-center gap-space-md">
+<span class="material-symbols-outlined text-[28px] text-on-tertiary-container">verified_user</span>
+<div>
+<span class="font-label-lg text-label-lg text-on-surface block">Compra Protegida</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Devolução sem custo em até 7 dias</span>
+</div>
+</div>
+<div class="hidden md:block w-px h-10 bg-outline-variant/40"></div>
+<div class="flex items-center gap-space-md">
+<span class="material-symbols-outlined text-[28px] text-on-surface">forum</span>
+<div>
+<span class="font-label-lg text-label-lg text-on-surface block">Dúvida na escolha?</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Nossa equipe atende você na hora</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Featured Products Section -->
+<section class="max-w-[1240px] mx-auto px-margin py-space-xl w-full" id="produtos-recomendados">
+<div class="flex flex-col sm:flex-row sm:items-end justify-between gap-space-md mb-space-xl">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary-container">Seleção aprovada por especialistas</span>
+<h2 class="font-headline-xl text-headline-xl text-on-surface mt-1">Produtos Mais Vendidos e Recomendados</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">
+          Modelos testados, com ótima durabilidade e explicados de forma direta.
+        </p>
+</div>
+<div class="flex items-center gap-space-xs self-start sm:self-auto bg-surface-container-lowest p-1 rounded-lg shadow-sm">
+<button class="px-space-md py-1.5 rounded-lg bg-surface-container text-on-surface font-label-md text-label-md" id="btn-all" onclick="showAllProducts()">Todos (5)</button>
+<button class="px-space-md py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface font-label-md text-label-md" id="btn-pcs" onclick="filterCategory('jogos')">PCs &amp; Peças</button>
+<button class="px-space-md py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface font-label-md text-label-md" id="btn-acc" onclick="filterCategory('acessorios')">Periféricos</button>
+</div>
+</div>
+<!-- Product Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter" id="product-grid">
+<!-- Product 1: RTX 4060 -->
+<div class="product-item bg-surface-container-lowest rounded-xl p-space-lg shadow-sm hover:shadow-md transition-all flex flex-col justify-between" data-category="jogos">
+<div>
+<!-- Friendly Use-Case Badge -->
+<div class="inline-flex items-center gap-1.5 px-space-md py-1 rounded-full bg-secondary-fixed/40 text-on-secondary-fixed font-label-sm text-label-sm mb-space-md">
+<span class="material-symbols-outlined text-[15px]">speed</span>
+<span>Ideal para jogos modernos e edição rápida</span>
+</div>
+<!-- Product Image Frame -->
+<div class="w-full h-52 bg-surface-container-low rounded-lg mb-space-md flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-contain p-space-md hover:scale-105 transition-transform duration-300" data-alt="Modern RTX 4060 graphics card studio photograph on a pristine white backdrop, subtle warm reflections, dual quiet fans, clean angles, professional product shot" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDt9jb6cS0yRZndz5AyLiglO7S6pQOofQbA9ua_8wbbjfkBNRYzwwx0NqJSYoEs7w_DMEadAs04Uj8Je-cCQ31QBSuLgBC7Emh1kxPuYD2vDOdMrUENlWiQ9oYDc5Cr4nq-nWyfjaNwmM9lVCLuyXJ3OpyUmqvjDeIfrdJbdhZijbDUbkCqte8l4FcsBzerWPHHBdNnpAq3RFRjAl7CBuwARlW4YCsM2YAJWNVYT4lNJEjSSefKtLOi6w"/>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant block mb-1">Placa de Vídeo Dedicada</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-space-xs">Placa Gráfica RTX 4060 8GB</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">
+            Faz jogos rodarem sem engasgos e acelera tarefas pesadas como edição de imagens e vídeos sem esquentar.
+          </p>
+</div>
+<div class="pt-space-md border-t border-surface-container">
+<div class="mb-space-md">
+<span class="font-body-sm text-body-sm text-on-surface-variant block">À vista no PIX com 10% off</span>
+<div class="font-price-hero text-price-hero text-on-surface">R$ 2.150,90</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant block">ou 10x de R$ 238,99 sem juros</span>
+</div>
+<button class="w-full py-3.5 bg-secondary-container hover:opacity-90 text-on-primary font-label-lg text-label-lg rounded-lg transition-all flex items-center justify-center gap-space-xs">
+<span>Ver Detalhes do Produto</span>
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+</div>
+</div>
+<!-- Product 2: Ryzen 7 5700X -->
+<div class="product-item bg-surface-container-lowest rounded-xl p-space-lg shadow-sm hover:shadow-md transition-all flex flex-col justify-between" data-category="jogos">
+<div>
+<!-- Friendly Use-Case Badge -->
+<div class="inline-flex items-center gap-1.5 px-space-md py-1 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm mb-space-md">
+<span class="material-symbols-outlined text-[15px] text-secondary-container">psychology</span>
+<span>Cérebro rápido para seu PC não travar</span>
+</div>
+<!-- Product Image Frame -->
+<div class="w-full h-52 bg-surface-container-low rounded-lg mb-space-md flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-contain p-space-md hover:scale-105 transition-transform duration-300" data-alt="AMD Ryzen 7 processor box in retail packaging standing upright on an off-white podium with soft amber ambient lighting and immaculate clean composition" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmQ79LYqX4945b9BzIWzDdnVsQy6Nb6j0qbp6DXxGAnXSxTL0b4CBUIyH-YH6upA2bB-Z3nhKeLE1E_NuInnFoPpp3Hfx2yPWOmDgC_JTjA2VAnOP8m5Shf2q-ixFuFG6Qo2u6cHz6Bo13NVAzbTlEyhBze6d_zX09Mqk96N98p8zllXiv-ATfhcWjf9EHuJTNSVeQzIHuYv5YW2MXwJe4UFRy66j32QEjECFsmHsePAY2GqK7ZXW37Q"/>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant block mb-1">Processador Central (CPU)</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-space-xs">Processador AMD Ryzen 7 5700X</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">
+            Permite abrir dezenas de abas no navegador, reuniões online e planilhas pesadas ao mesmo tempo com total agilidade.
+          </p>
+</div>
+<div class="pt-space-md border-t border-surface-container">
+<div class="mb-space-md">
+<span class="font-body-sm text-body-sm text-on-surface-variant block">À vista no PIX</span>
+<div class="font-price-hero text-price-hero text-on-surface">R$ 1.199,99</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant block">ou 10x de R$ 133,33 sem juros</span>
+</div>
+<button class="w-full py-3.5 bg-secondary-container hover:opacity-90 text-on-primary font-label-lg text-label-lg rounded-lg transition-all flex items-center justify-center gap-space-xs">
+<span>Ver Detalhes do Produto</span>
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+</div>
+</div>
+<!-- Product 3: Monitor LG UltraGear 24 -->
+<div class="product-item bg-surface-container-lowest rounded-xl p-space-lg shadow-sm hover:shadow-md transition-all flex flex-col justify-between" data-category="estudos">
+<div>
+<!-- Friendly Use-Case Badge -->
+<div class="inline-flex items-center gap-1.5 px-space-md py-1 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm mb-space-md">
+<span class="material-symbols-outlined text-[15px] text-on-tertiary-container">visibility</span>
+<span>Imagem super nítida que não cansa os olhos</span>
+</div>
+<!-- Product Image Frame -->
+<div class="w-full h-52 bg-surface-container-low rounded-lg mb-space-md flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-contain p-space-md hover:scale-105 transition-transform duration-300" data-alt="LG UltraGear 24 inch ergonomic computer monitor display with ultra thin bezels on a neat desk, displaying clean nature wallpaper with natural light and soothing colors" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBlV-vZ6GyUtwjmDiIhfGdYLkIzhqCGUdu9g-U75YHKpp-wQVXUs3zzi12lgxbrRo56oTOfDIxkqHjI52FiJUgMs4uBc-AdXyGMX15w1ncCFi9UNYCjzhakHW0uWwF3C3FXb3BNF7otdIJEs-QRwdL-PXawd7Z2h0Sl-0ICZRMGaQUXeeuw1RmiKgzu1nVGByWF6ybBNuJMbnUsKRnkx1MyipSjt_ws3HXt_Ep4P2CG8mm_39R2UwAFA"/>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant block mb-1">Tela de Alta Resolução</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-space-xs">Monitor LG UltraGear 24" IPS</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">
+            Filtro de luz azul integrado para ler e estudar por horas sem ardência nos olhos. Movimento suave e sem borrões.
+          </p>
+</div>
+<div class="pt-space-md border-t border-surface-container">
+<div class="mb-space-md">
+<span class="font-body-sm text-body-sm text-on-surface-variant block">À vista no PIX</span>
+<div class="font-price-hero text-price-hero text-on-surface">R$ 949,00</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant block">ou 8x de R$ 118,62 sem juros</span>
+</div>
+<button class="w-full py-3.5 bg-secondary-container hover:opacity-90 text-on-primary font-label-lg text-label-lg rounded-lg transition-all flex items-center justify-center gap-space-xs">
+<span>Ver Detalhes do Produto</span>
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+</div>
+</div>
+<!-- Product 4: Teclado Mecânico Redragon -->
+<div class="product-item bg-surface-container-lowest rounded-xl p-space-lg shadow-sm hover:shadow-md transition-all flex flex-col justify-between" data-category="acessorios">
+<div>
+<!-- Friendly Use-Case Badge -->
+<div class="inline-flex items-center gap-1.5 px-space-md py-1 rounded-full bg-surface-container text-on-surface font-label-sm text-label-sm mb-space-md">
+<span class="material-symbols-outlined text-[15px]">keyboard</span>
+<span>Confortável e durável com teclas iluminadas</span>
+</div>
+<!-- Product Image Frame -->
+<div class="w-full h-52 bg-surface-container-low rounded-lg mb-space-md flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-contain p-space-md hover:scale-105 transition-transform duration-300" data-alt="High quality mechanical computer keyboard Redragon model with soft glowing backlight on solid white surface, crisp keycaps, elegant top down angle view" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCs1eLqZ-ltxR8qOOrge47pAAGb3E4ecsaCV76iIGknYvB2y2lLQzm_3uxxp6dDWGX-aT5wa4djjxGTiO6c4bi1kYjH68_B1mFCQEc9X_SpqYviJhBTj4rMVB8T0QYEsGkm3y7ZMoZzoWg-ieKFBKUAQjxou7JFr85s64r4OczFYCqRaIABFmP1e6tYnP6S7FDJ3-TRFOrx3MIcrXxcX6weSz9ScrUYMKHe4EKoJ-K7pyrXGATbLZsE-w"/>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant block mb-1">Teclado Ergonômico</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-space-xs">Teclado Redragon Mecânico ABNT2</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">
+            Padrão brasileiro com tecla Ç. Digitação macia que não cansa as mãos e luz suave para usar no escuro.
+          </p>
+</div>
+<div class="pt-space-md border-t border-surface-container">
+<div class="mb-space-md">
+<span class="font-body-sm text-body-sm text-on-surface-variant block">À vista no PIX</span>
+<div class="font-price-hero text-price-hero text-on-surface">R$ 249,90</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant block">ou 5x de R$ 49,98 sem juros</span>
+</div>
+<button class="w-full py-3.5 bg-secondary-container hover:opacity-90 text-on-primary font-label-lg text-label-lg rounded-lg transition-all flex items-center justify-center gap-space-xs">
+<span>Ver Detalhes do Produto</span>
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+</div>
+</div>
+<!-- Product 5: Rato Gamer Logitech G203 -->
+<div class="product-item bg-surface-container-lowest rounded-xl p-space-lg shadow-sm hover:shadow-md transition-all flex flex-col justify-between" data-category="acessorios">
+<div>
+<!-- Friendly Use-Case Badge -->
+<div class="inline-flex items-center gap-1.5 px-space-md py-1 rounded-full bg-surface-container text-on-surface font-label-sm text-label-sm mb-space-md">
+<span class="material-symbols-outlined text-[15px]">mouse</span>
+<span>Leve, preciso e com pegada confortável</span>
+</div>
+<!-- Product Image Frame -->
+<div class="w-full h-52 bg-surface-container-low rounded-lg mb-space-md flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-contain p-space-md hover:scale-105 transition-transform duration-300" data-alt="Logitech G203 optical computer mouse matte black finish ergonomic curves isolated on studio light gray surface, sleek minimalist aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjabPneI61pejnxVyePfvekIrPhlOn2VIivFZx9DGhJe_mYXymFhmWM9fgHQjaIS0AS_IDvf8WeVcv1Wfy3ZBE2r1G-Gm2YXjl61S8nD-2QyPpXgw2HYsgbqexeMUU3cXC14cayZZuKv8OY6xojDqlzs4qVcCQXWfnFs7xFcU2Dt_S4e5petqA9CQDZ7Ita49iMUyYmtVjeps32d2XNekxNmgHnMoDxidKYOkZy93e18E31e_poyAngA"/>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant block mb-1">Mouse Anatômico</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-space-xs">Mouse Logitech G203 Lightsync</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">
+            Encaixe natural para mãos médias e pequenas, clique suave e precisão para não errar nenhum comando na tela.
+          </p>
+</div>
+<div class="pt-space-md border-t border-surface-container">
+<div class="mb-space-md">
+<span class="font-body-sm text-body-sm text-on-surface-variant block">À vista no PIX</span>
+<div class="font-price-hero text-price-hero text-on-surface">R$ 139,99</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant block">ou 3x de R$ 46,66 sem juros</span>
+</div>
+<button class="w-full py-3.5 bg-secondary-container hover:opacity-90 text-on-primary font-label-lg text-label-lg rounded-lg transition-all flex items-center justify-center gap-space-xs">
+<span>Ver Detalhes do Produto</span>
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+</div>
+</div>
+<!-- Human Help Card inside Grid -->
+<div class="bg-gradient-to-br from-surface-container-high to-surface-container rounded-xl p-space-xl flex flex-col justify-between text-on-surface">
+<div>
+<div class="w-12 h-12 rounded-full bg-secondary-container text-on-primary flex items-center justify-center mb-space-md shadow-sm">
+<span class="material-symbols-outlined text-[24px]">chat</span>
+</div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary-container block mb-1">Atendimento Amigo</span>
+<h3 class="font-headline-md text-headline-md mb-space-sm">Não encontrou o que precisava?</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-space-md">
+            Conte o que você deseja fazer no computador e nossa equipe seleciona a peça ou máquina certa para o seu orçamento.
+          </p>
+</div>
+<a class="w-full py-3.5 bg-surface-container-lowest hover:bg-surface text-on-surface font-label-lg text-label-lg rounded-lg transition-colors flex items-center justify-center gap-space-xs shadow-sm" href="https://wa.me/551140028922" target="_blank">
+<span class="material-symbols-outlined text-on-tertiary-container text-[20px]">call</span>
+<span>Pedir Ajuda no WhatsApp</span>
+</a>
+</div>
+</div>
+</section>
+<!-- Interactive FAQ (Dúvidas de Primeira Compra) -->
+<section class="max-w-[1240px] mx-auto px-margin py-space-xl w-full">
+<div class="bg-surface-container-lowest rounded-xl p-space-xl shadow-sm">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-start">
+<!-- Left Title and Reassurance Callout -->
+<div class="lg:col-span-5 space-y-space-md">
+<div class="inline-flex items-center gap-1.5 px-space-md py-1 rounded-full bg-surface-container text-on-surface font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px] text-secondary-container">format_image_left</span>
+<span>Segurança TechPança</span>
+</div>
+<h2 class="font-headline-xl text-headline-xl text-on-surface">
+            Dúvidas frequentes de quem compra pela primeira vez
+          </h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+            Queremos que você se sinta 100% confortável e seguro antes de qualquer decisão. Nada de letrinhas miúdas.
+          </p>
+<div class="bg-surface-container-low rounded-lg p-space-md flex items-start gap-space-md">
+<span class="material-symbols-outlined text-[24px] text-secondary-container shrink-0 mt-0.5">contact_support</span>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface font-semibold">Prefere conversar por voz ou mensagem?</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-sm">
+                Fale agora com atendentes reais que entendem do assunto e explicam sem termos técnicos.
+              </p>
+<a class="inline-flex items-center gap-1 text-secondary-container hover:underline font-label-md text-label-md" href="https://wa.me/551140028922" target="_blank">
+<span>Chamar no WhatsApp Oficial</span>
+<span class="material-symbols-outlined text-[16px]">arrow_outward</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Right Accordion List -->
+<div class="lg:col-span-7 space-y-space-sm" id="faq-accordion">
+<!-- FAQ Item 1 -->
+<div class="faq-card bg-surface-container-low rounded-lg overflow-hidden transition-colors">
+<button class="w-full p-space-md text-left flex items-center justify-between gap-space-md font-label-lg text-label-lg text-on-surface" onclick="toggleFaq(this)">
+<span>Como funciona a garantia de 1 ano?</span>
+<span class="material-symbols-outlined transform transition-transform duration-200">expand_more</span>
+</button>
+<div class="faq-content px-space-md pb-space-md text-on-surface-variant font-body-md text-body-md hidden">
+              Todos os produtos saem da nossa loja com Nota Fiscal oficial e garantia completa de 12 meses. Caso qualquer item apresente falha de fabricação, nossa equipe resolve diretamente com você: sem intermediários complicados, com frete de envio por nossa conta.
+            </div>
+</div>
+<!-- FAQ Item 2 -->
+<div class="faq-card bg-surface-container-low rounded-lg overflow-hidden transition-colors">
+<button class="w-full p-space-md text-left flex items-center justify-between gap-space-md font-label-lg text-label-lg text-on-surface" onclick="toggleFaq(this)">
+<span>Pagar pelo PIX é seguro? Como recebo meu desconto?</span>
+<span class="material-symbols-outlined transform transition-transform duration-200">expand_more</span>
+</button>
+<div class="faq-content px-space-md pb-space-md text-on-surface-variant font-body-md text-body-md hidden">
+              Sim, é totalmente seguro! Nosso sistema gera um código QR Oficial do Banco Central no momento da compra. Assim que o pagamento é concluído pelo app do seu banco, o sistema confirma o pedido na hora e aplica o desconto especial de forma automática.
+            </div>
+</div>
+<!-- FAQ Item 3 -->
+<div class="faq-card bg-surface-container-low rounded-lg overflow-hidden transition-colors">
+<button class="w-full p-space-md text-left flex items-center justify-between gap-space-md font-label-lg text-label-lg text-on-surface" onclick="toggleFaq(this)">
+<span>Vocês ajudam se eu não souber como instalar?</span>
+<span class="material-symbols-outlined transform transition-transform duration-200">expand_more</span>
+</button>
+<div class="faq-content px-space-md pb-space-md text-on-surface-variant font-body-md text-body-md hidden">
+              Com certeza! Quando seu produto chegar em casa, você pode mandar mensagem no nosso WhatsApp. Um técnico irá te orientar passo a passo por foto ou vídeo para conectar os cabos corretamente e começar a usar sem medo de errar.
+            </div>
+</div>
+<!-- FAQ Item 4 -->
+<div class="faq-card bg-surface-container-low rounded-lg overflow-hidden transition-colors">
+<button class="w-full p-space-md text-left flex items-center justify-between gap-space-md font-label-lg text-label-lg text-on-surface" onclick="toggleFaq(this)">
+<span>E se o produto não servir para o que eu preciso?</span>
+<span class="material-symbols-outlined transform transition-transform duration-200">expand_more</span>
+</button>
+<div class="faq-content px-space-md pb-space-md text-on-surface-variant font-body-md text-body-md hidden">
+              Pelo Código de Defesa do Consumidor e pela política TechPança Amiga, você tem até 7 dias corridos após o recebimento para testar. Se não gostar ou achar que não serviu, devolvemos 100% do valor pago sem burocracia.
+            </div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Final Friendly Contact Callout Banner -->
+<section class="max-w-[1240px] mx-auto px-margin pb-space-xl w-full">
+<div class="bg-surface-container-high rounded-xl p-space-xl flex flex-col md:flex-row items-center justify-between gap-space-lg">
+<div class="flex items-center gap-space-lg">
+<div class="w-16 h-16 rounded-full bg-surface-container-lowest flex items-center justify-center shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-secondary-container text-[32px]">hearing</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Quer ajuda para montar seu computador?</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Diga qual o seu uso e nossa equipe monta a configuração perfeita para você.</p>
+</div>
+</div>
+<a class="shrink-0 bg-secondary-container hover:opacity-90 text-on-primary px-space-xl py-3.5 rounded-lg font-label-lg text-label-lg transition-all flex items-center gap-space-xs shadow-sm" href="https://wa.me/551140028922" target="_blank">
+<span class="material-symbols-outlined text-[20px]">chat</span>
+<span>Falar com Atendente Agora</span>
+</a>
+</div>
+</section>
+</div>
+<script>
+  function toggleFaq(btn) {
+    const content = btn.nextElementSibling;
+    const icon = btn.querySelector('.material-symbols-outlined');
+    const isHidden = content.classList.contains('hidden');
+
+    // Close all FAQs first
+    document.querySelectorAll('.faq-content').forEach(el => el.classList.add('hidden'));
+    document.querySelectorAll('.faq-card button .material-symbols-outlined').forEach(el => el.classList.remove('rotate-180'));
+
+    if (isHidden) {
+      content.classList.remove('hidden');
+      icon.classList.add('rotate-180');
+    }
+  }
+
+  function filterCategory(cat) {
+    const items = document.querySelectorAll('.product-item');
+    items.forEach(item => {
+      if (cat === 'all' || item.dataset.category === cat) {
+        item.style.display = 'flex';
+      } else {
+        item.style.display = 'none';
+      }
+    });
+
+    // Update buttons
+    updateButtonStates(cat);
+    
+    // Smooth scroll to products
+    const section = document.getElementById('produtos-recomendados');
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
+  function showAllProducts() {
+    filterCategory('all');
+  }
+
+  function updateButtonStates(activeCat) {
+    const btnAll = document.getElementById('btn-all');
+    const btnPcs = document.getElementById('btn-pcs');
+    const btnAcc = document.getElementById('btn-acc');
+
+    if (!btnAll || !btnPcs || !btnAcc) return;
+
+    const baseClass = "px-space-md py-1.5 rounded-lg font-label-md text-label-md transition-colors ";
+    const activeClass = baseClass + "bg-surface-container text-on-surface font-semibold";
+    const inactiveClass = baseClass + "text-on-surface-variant hover:text-on-surface";
+
+    btnAll.className = activeCat === 'all' ? activeClass : inactiveClass;
+    btnPcs.className = activeCat === 'jogos' ? activeClass : inactiveClass;
+    btnAcc.className = activeCat === 'acessorios' ? activeClass : inactiveClass;
+  }
+</script></main><footer class="w-full bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] mt-space-xl"><div class="bg-surface-container-low py-space-lg"><div class="max-w-[1240px] mx-auto px-margin grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter"><div class="flex items-start gap-space-md"><div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-on-surface text-[22px]">verified_user</span></div><div><h4 class="font-label-lg text-label-lg text-on-surface mb-0.5">12 Meses de Garantia</h4><p class="font-body-sm text-body-sm text-on-surface-variant">Sem burocracia ou termos difíceis para troca imediata.</p></div></div><div class="flex items-start gap-space-md"><div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-on-surface text-[22px]">assignment_return</span></div><div><h4 class="font-label-lg text-label-lg text-on-surface mb-0.5">Devolução em 7 Dias</h4><p class="font-body-sm text-body-sm text-on-surface-variant">Não gostou? Devolvemos 100% do seu dinheiro com frete grátis.</p></div></div><div class="flex items-start gap-space-md"><div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-on-surface text-[22px]">chat</span></div><div><h4 class="font-label-lg text-label-lg text-on-surface mb-0.5">Atendimento Humanizado</h4><p class="font-body-sm text-body-sm text-on-surface-variant">Gente de verdade para te ajudar por WhatsApp ou e-mail.</p></div></div><div class="flex items-start gap-space-md"><div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-on-surface text-[22px]">lock</span></div><div><h4 class="font-label-lg text-label-lg text-on-surface mb-0.5">Pagamento Protegido</h4><p class="font-body-sm text-body-sm text-on-surface-variant">Desconto no PIX ou até 10x sem juros no cartão de crédito.</p></div></div></div></div><div class="max-w-[1240px] mx-auto px-margin py-space-xl"><div class="grid grid-cols-1 md:grid-cols-4 gap-gutter mb-space-xl"><div class="space-y-space-sm"><div class="flex items-center gap-space-xs"><span class="font-headline-sm text-headline-sm text-on-surface tracking-tight">TechPança</span></div><p class="font-body-sm text-body-sm text-on-surface-variant">Sua loja amigável de informática e tecnologia feita sob medida para facilitar seu dia a dia.</p></div><div><h5 class="font-label-md text-label-md text-on-surface uppercase tracking-wider mb-space-md">Departamentos</h5><ul class="space-y-space-sm font-body-sm text-body-sm text-on-surface-variant"><li><a class="hover:text-on-surface transition-colors" data-path="computadores-e-pecas" href="#">Computadores Prontos</a></li><li><a class="hover:text-on-surface transition-colors" data-path="acessorios-e-mouses" href="#">Mouses &amp; Teclados</a></li><li><a class="hover:text-on-surface transition-colors" data-path="telas-e-monitores" href="#">Monitores para Estudo</a></li><li><a class="hover:text-on-surface transition-colors" data-path="ofertas-da-semana" href="#">Seleção de Ofertas</a></li></ul></div><div><h5 class="font-label-md text-label-md text-on-surface uppercase tracking-wider mb-space-md">Ajuda ao Consumidor</h5><ul class="space-y-space-sm font-body-sm text-body-sm text-on-surface-variant"><li><a class="hover:text-on-surface transition-colors" data-path="ajuda-e-suporte" href="#">Como Comprar pelo Site</a></li><li><a class="hover:text-on-surface transition-colors" data-path="ajuda-e-suporte" href="#">Prazos e Entregas</a></li><li><a class="hover:text-on-surface transition-colors" data-path="ajuda-e-suporte" href="#">Garantia Descomplicada</a></li><li><a class="hover:text-on-surface transition-colors" data-path="ajuda-e-suporte" href="#">Falar com Especialista</a></li></ul></div><div><h5 class="font-label-md text-label-md text-on-surface uppercase tracking-wider mb-space-md">Central de Apoio</h5><p class="font-body-sm text-body-sm text-on-surface-variant mb-space-sm">Segunda a Sexta das 08h às 19h<br/>Sábados das 09h às 14h</p><div class="flex items-center gap-space-xs text-on-tertiary-container font-label-md text-label-md"><span class="material-symbols-outlined text-[18px]">phone_in_talk</span><span>(11) 4002-8922</span></div></div></div><div class="pt-space-lg flex flex-col md:flex-row items-center justify-between gap-space-md text-center md:text-left"><p class="font-label-sm text-label-sm text-on-surface-variant">© 2024 TechPança Comércio Digital Ltda. CNPJ: 00.000.000/0001-00. Todos os direitos reservados.</p><p class="font-label-sm text-label-sm text-on-surface-variant">Desenvolvido com foco na clareza e respeito ao cliente.</p></div></div></footer></body></html>
