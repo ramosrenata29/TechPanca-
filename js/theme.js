@@ -4,24 +4,30 @@ const ThemeManager = {
     const savedTheme = localStorage.getItem('techpanca_theme') || 'dark';
     this.setTheme(savedTheme);
 
-    const toggleBtns = document.querySelectorAll('.theme-toggle-btn');
-    toggleBtns.forEach(btn => {
-      btn.addEventListener('click', (e) => {
+    document.addEventListener('click', (e) => {
+      const btn = e.target.closest('.theme-toggle-btn');
+      if (btn) {
         e.preventDefault();
-        const current = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
-        const next = current === 'dark' ? 'light' : 'dark';
-        this.setTheme(next);
-      });
+        this.toggle();
+      }
     });
+  },
+
+  toggle() {
+    const current = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+    const next = current === 'dark' ? 'light' : 'dark';
+    this.setTheme(next);
   },
 
   setTheme(theme) {
     if (theme === 'dark') {
       document.documentElement.classList.add('dark');
+      document.documentElement.classList.remove('light');
       localStorage.setItem('techpanca_theme', 'dark');
       this.updateIcons('dark');
     } else {
       document.documentElement.classList.remove('dark');
+      document.documentElement.classList.add('light');
       localStorage.setItem('techpanca_theme', 'light');
       this.updateIcons('light');
     }

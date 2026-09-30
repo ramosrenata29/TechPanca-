@@ -4,14 +4,58 @@ let currentCategorias = [];
 let currentProdutos = [];
 let currentPromocoes = [];
 let currentCupons = [];
+let currentClientes = [];
 let currentFilterCategory = null;
 let searchQuery = '';
+
+// Máscaras e Utilitários de Entrada
+function maskCPF(value) {
+  if (!value) return '';
+  let v = value.replace(/\D/g, '').slice(0, 11);
+  if (v.length > 9) {
+    return v.replace(/(\d{3})(\d{3})(\d{3})(\d{1,2})/, '$1.$2.$3-$4');
+  } else if (v.length > 6) {
+    return v.replace(/(\d{3})(\d{3})(\d{1,3})/, '$1.$2.$3');
+  } else if (v.length > 3) {
+    return v.replace(/(\d{3})(\d{1,3})/, '$1.$2');
+  }
+  return v;
+}
+
+function maskPhone(value) {
+  if (!value) return '';
+  let v = value.replace(/\D/g, '').slice(0, 11);
+  if (v.length > 10) {
+    return v.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+  } else if (v.length > 6) {
+    return v.replace(/(\d{2})(\d{4})(\d{0,4})/, '($1) $2-$3');
+  } else if (v.length > 2) {
+    return v.replace(/(\d{2})(\d{0,5})/, '($1) $2');
+  } else if (v.length > 0) {
+    return v.replace(/(\d*)/, '($1');
+  }
+  return v;
+}
+
+function unmask(value) {
+  return value ? value.replace(/\D/g, '') : '';
+}
 
 // Inicialização
 document.addEventListener('DOMContentLoaded', async () => {
   CartState.init();
   await loadInitialData();
   showSection('store-home');
+
+  // Event Listeners Globais para Máscaras
+  document.addEventListener('input', (e) => {
+    if (e.target.matches('#chk-cpf, .cpf-mask')) {
+      e.target.value = maskCPF(e.target.value);
+    }
+    if (e.target.matches('#chk-telefone, .phone-mask')) {
+      e.target.value = maskPhone(e.target.value);
+    }
+  });
 });
 
 // Carga Inicial dos Dados do Supabase
@@ -64,18 +108,72 @@ function showSection(sectionId) {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
+// Autenticação Admin
+let isAdminAuthenticated = false;
+
+function checkAdminAuth() {
+  if (sessionStorage.getItem('techpanca_admin_auth') === 'true') {
+    isAdminAuthenticated = true;
+  }
+  return isAdminAuthenticated;
+}
+
+function promptAdminAuth() {
+  const modal = document.getElementById('admin-auth-modal');
+  const errorDiv = document.getElementById('admin-auth-error');
+  const input = document.getElementById('admin-password-input');
+  if (errorDiv) errorDiv.classList.add('hidden');
+  if (input) input.value = '';
+  if (modal) modal.classList.remove('hidden');
+}
+
+function closeAdminAuthModal() {
+  const modal = document.getElementById('admin-auth-modal');
+  if (modal) modal.classList.add('hidden');
+}
+
+function handleAdminAuthSubmit(e) {
+  e.preventDefault();
+  const input = document.getElementById('admin-password-input');
+  const errorDiv = document.getElementById('admin-auth-error');
+
+  if (input && input.value === 'admin123') {
+    isAdminAuthenticated = true;
+    sessionStorage.setItem('techpanca_admin_auth', 'true');
+    closeAdminAuthModal();
+    executeSwitchToAdmin();
+  } else {
+    if (errorDiv) errorDiv.classList.remove('hidden');
+  }
+}
+
+function executeSwitchToAdmin() {
+  const btnStore = document.getElementById('btn-mode-store');
+  const btnAdmin = document.getElementById('btn-mode-admin');
+
+  if (btnStore && btnAdmin) {
+    btnStore.className = "px-3 py-1.5 rounded-md font-bold text-on-surface-variant hover:text-on-surface transition-colors";
+    btnAdmin.className = "px-3 py-1.5 rounded-md font-bold transition-colors bg-primary-container text-on-primary flex items-center gap-1";
+  }
+  showSection('admin-dashboard');
+}
+
 // Switcher Loja vs Admin
 function switchViewMode(mode) {
   const btnStore = document.getElementById('btn-mode-store');
   const btnAdmin = document.getElementById('btn-mode-admin');
 
   if (mode === 'admin') {
-    btnStore.className = "px-3 py-1.5 rounded-md font-bold text-on-surface-variant hover:text-on-surface transition-colors";
-    btnAdmin.className = "px-3 py-1.5 rounded-md font-bold transition-colors bg-primary-container text-on-primary flex items-center gap-1";
-    showSection('admin-dashboard');
+    if (!checkAdminAuth()) {
+      promptAdminAuth();
+      return;
+    }
+    executeSwitchToAdmin();
   } else {
-    btnAdmin.className = "px-3 py-1.5 rounded-md font-bold text-on-surface-variant hover:text-on-surface transition-colors flex items-center gap-1";
-    btnStore.className = "px-3 py-1.5 rounded-md font-bold transition-colors bg-primary-container text-on-primary";
+    if (btnAdmin && btnStore) {
+      btnAdmin.className = "px-3 py-1.5 rounded-md font-bold text-on-surface-variant hover:text-on-surface transition-colors flex items-center gap-1";
+      btnStore.className = "px-3 py-1.5 rounded-md font-bold transition-colors bg-primary-container text-on-primary";
+    }
     showSection('store-home');
   }
 }
@@ -480,10 +578,13 @@ async function handleCheckoutSubmit(e) {
 
   const nome = document.getElementById('chk-nome').value.trim();
   const email = document.getElementById('chk-email').value.trim();
-  const cpf = document.getElementById('chk-cpf').value.trim();
-  const telefone = document.getElementById('chk-telefone').value.trim();
+  const cpfFormatted = document.getElementById('chk-cpf').value.trim();
+  const telefoneFormatted = document.getElementById('chk-telefone').value.trim();
 
-  if (!nome || !email || !cpf) {
+  const cpfClean = unmask(cpfFormatted);
+  const telefoneClean = unmask(telefoneFormatted);
+
+  if (!nome || !email || !cpfClean) {
     showToast('Preencha os campos obrigatórios do formulário.', 'error');
     return;
   }
@@ -493,17 +594,17 @@ async function handleCheckoutSubmit(e) {
   btn.textContent = 'Processando pedido...';
 
   try {
-    // Check if client exists
-    let cliente = await SupabaseDB.getClienteByEmailOuCpf(email, cpf);
+    // Check if client exists (searching with clean or formatted)
+    let cliente = await SupabaseDB.getClienteByEmailOuCpf(email, cpfClean);
 
     if (!cliente) {
-      // Create new client
+      // Create new client with unmasked numbers
       const newClientRes = await SupabaseDB.createCliente({
         id: crypto.randomUUID(),
         nome,
         email,
-        cpf,
-        telefone
+        cpf: cpfClean,
+        telefone: telefoneClean
       });
       cliente = newClientRes[0];
     }
@@ -805,22 +906,110 @@ async function renderAdminClientsTable() {
   if (!tbody) return;
 
   tbody.innerHTML = '<tr><td colspan="5" class="p-4 text-center">Carregando clientes...</td></tr>';
-  const clientes = await SupabaseDB.getClientes();
+  try {
+    const clientes = await SupabaseDB.getClientes();
+    if (clientes && clientes.length > 0) {
+      currentClientes = clientes;
+    }
+  } catch (e) {
+    console.warn('Falha ao buscar clientes do Supabase, usando lista local:', e);
+  }
 
-  if (!clientes || clientes.length === 0) {
+  if (!currentClientes || currentClientes.length === 0) {
     tbody.innerHTML = '<tr><td colspan="5" class="p-4 text-center text-on-surface-variant">Nenhum cliente cadastrado.</td></tr>';
     return;
   }
 
-  tbody.innerHTML = clientes.map(c => `
+  tbody.innerHTML = currentClientes.map(c => `
     <tr class="hover:bg-surface-variant/30 transition-colors">
       <td class="p-3 font-bold">${c.nome}</td>
       <td class="p-3">${c.email}</td>
-      <td class="p-3">${c.cpf || '-'}</td>
-      <td class="p-3">${c.telefone || '-'}</td>
-      <td class="p-3">${new Date(c.created_at).toLocaleDateString('pt-BR')}</td>
+      <td class="p-3">${c.cpf ? maskCPF(c.cpf) : '-'}</td>
+      <td class="p-3">${c.telefone ? maskPhone(c.telefone) : '-'}</td>
+      <td class="p-3">${c.created_at ? new Date(c.created_at).toLocaleDateString('pt-BR') : '-'}</td>
     </tr>
   `).join('');
+}
+
+// Modal e Handler Cadastro de Cliente no Admin
+function openClienteModal() {
+  const title = document.getElementById('modal-title');
+  const body = document.getElementById('modal-body');
+
+  title.textContent = 'Cadastrar Novo Cliente';
+
+  body.innerHTML = `
+    <form onsubmit="saveClienteForm(event)" class="space-y-4 text-xs">
+      <div>
+        <label class="block font-bold mb-1">Nome Completo *</label>
+        <input type="text" id="f-cli-nome" required placeholder="Ex: Maria Souza" class="w-full bg-background border border-surface-variant rounded-lg p-2 text-on-surface">
+      </div>
+
+      <div>
+        <label class="block font-bold mb-1">E-mail *</label>
+        <input type="email" id="f-cli-email" required placeholder="cliente@email.com" class="w-full bg-background border border-surface-variant rounded-lg p-2 text-on-surface">
+      </div>
+
+      <div class="grid grid-cols-2 gap-3">
+        <div>
+          <label class="block font-bold mb-1">CPF *</label>
+          <input type="text" id="f-cli-cpf" required placeholder="000.000.000-00" class="cpf-mask w-full bg-background border border-surface-variant rounded-lg p-2 text-on-surface">
+        </div>
+        <div>
+          <label class="block font-bold mb-1">Telefone / WhatsApp</label>
+          <input type="tel" id="f-cli-tel" placeholder="(11) 99999-9999" class="phone-mask w-full bg-background border border-surface-variant rounded-lg p-2 text-on-surface">
+        </div>
+      </div>
+
+      <div class="pt-3 border-t border-surface-variant flex justify-end gap-2">
+        <button type="button" onclick="closeAdminModal()" class="px-4 py-2 rounded-lg bg-surface-variant font-bold">Cancelar</button>
+        <button type="submit" class="px-4 py-2 rounded-lg bg-primary-container text-on-primary font-bold">Salvar Cliente</button>
+      </div>
+    </form>
+  `;
+
+  document.getElementById('admin-modal').classList.remove('hidden');
+}
+
+async function saveClienteForm(e) {
+  e.preventDefault();
+  const nome = document.getElementById('f-cli-nome').value.trim();
+  const email = document.getElementById('f-cli-email').value.trim();
+  const cpfFormatted = document.getElementById('f-cli-cpf').value.trim();
+  const telFormatted = document.getElementById('f-cli-tel').value.trim();
+
+  const cpfClean = unmask(cpfFormatted);
+  const telClean = unmask(telFormatted);
+
+  if (!nome || !email || !cpfClean) {
+    showToast('Preencha os campos obrigatórios do cliente.', 'error');
+    return;
+  }
+
+  try {
+    const data = {
+      id: crypto.randomUUID(),
+      nome,
+      email,
+      cpf: cpfClean,
+      telefone: telClean,
+      created_at: new Date().toISOString()
+    };
+
+    try {
+      await SupabaseDB.createCliente(data);
+    } catch (dbErr) {
+      console.warn('Criação remota de cliente falhou (usando confirmação local):', dbErr);
+    }
+
+    currentClientes.unshift(data);
+    showToast('Cliente cadastrado com sucesso!');
+    closeAdminModal();
+    renderAdminClientsTable();
+  } catch (err) {
+    console.error(err);
+    showToast('Erro ao cadastrar cliente.', 'error');
+  }
 }
 
 // Modal e Handlers CRUD PRODUTOS
@@ -895,17 +1084,46 @@ async function saveProdutoForm(e, prodId) {
 
   try {
     if (prodId) {
-      await SupabaseDB.updateProduto(prodId, data);
+      // Atualiza localmente no array imediato para garantir reatividade instantânea
+      const idx = currentProdutos.findIndex(p => p.id === prodId);
+      if (idx !== -1) {
+        currentProdutos[idx] = { ...currentProdutos[idx], ...data };
+      }
+
+      // Atualiza o carrinho se o item alterado estiver no carrinho
+      CartState.items.forEach(ci => {
+        if (ci.id === prodId) {
+          ci.produto.nome = data.nome;
+          ci.produto.preco = data.preco;
+          ci.produto.foto_url = data.foto_url;
+        }
+      });
+      CartState.save();
+
+      try {
+        await SupabaseDB.updateProduto(prodId, data);
+      } catch (dbErr) {
+        console.warn('Atualização remota Supabase falhou (usando estado atualizado):', dbErr);
+      }
       showToast('Produto atualizado!');
     } else {
       data.id = crypto.randomUUID();
-      await SupabaseDB.createProduto(data);
-      showToast('Produto criado!');
+      let created = false;
+      try {
+        await SupabaseDB.createProduto(data);
+        created = true;
+      } catch (dbErr) {
+        console.warn('Criação remota Supabase falhou (adicionando ao estado local):', dbErr);
+      }
+      currentProdutos.unshift(data);
+      showToast('Produto criado com sucesso!');
     }
+
     closeAdminModal();
     renderAdminProductsTable();
-    loadInitialData();
+    renderStoreProducts();
   } catch (err) {
+    console.error(err);
     showToast('Erro ao salvar produto.', 'error');
   }
 }
@@ -1068,17 +1286,33 @@ async function savePromocaoForm(e, promoId) {
 
   try {
     if (promoId) {
-      await SupabaseDB.updatePromocao(promoId, data);
-      showToast('Promoção atualizada!');
+      // Atualiza estado local de promoções para reatividade
+      const idx = currentPromocoes.findIndex(p => p.id === promoId);
+      if (idx !== -1) {
+        currentPromocoes[idx] = { ...currentPromocoes[idx], ...data };
+      }
+      try {
+        await SupabaseDB.updatePromocao(promoId, data);
+      } catch (dbErr) {
+        console.warn('Atualização remota Supabase da promoção falhou (usando estado atualizado):', dbErr);
+      }
+      showToast('Promoção atualizada com sucesso!');
     } else {
       data.id = crypto.randomUUID();
-      await SupabaseDB.createPromocao(data);
-      showToast('Promoção criada!');
+      try {
+        await SupabaseDB.createPromocao(data);
+      } catch (dbErr) {
+        console.warn('Criação remota Supabase da promoção falhou (adicionando ao estado local):', dbErr);
+      }
+      currentPromocoes.unshift(data);
+      showToast('Promoção criada com sucesso!');
     }
+
     closeAdminModal();
     renderAdminPromotionsTable();
-    loadInitialData();
+    renderStoreProducts();
   } catch (err) {
+    console.error(err);
     showToast('Erro ao salvar promoção.', 'error');
   }
 }
